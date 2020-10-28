@@ -24,55 +24,22 @@ class Engine {
 
     addBackground(this.root);
 
-    // const tealDiv = document.createElement("div");
-    // tealDiv.style.width = "475px";
-    // tealDiv.style.height = "150px";
-    // tealDiv.style.position = "absolute";
-    // tealDiv.style.padding = "20px";
-    // tealDiv.style.borderRadius = "5px";
-    // tealDiv.style.backgroundColor = "aquamarine";
-    // tealDiv.style.display = "flex";
-    // tealDiv.style.flexDirection = "column";
-    // tealDiv.style.justifyContent = "center";
-    // tealDiv.style.alignItems = "center";
-    // tealDiv.style.textAlign = "center";
-    // tealDiv.style.lineHeight = "30px";
-    // tealDiv.style.zIndex = "150";
-    // tealDiv.innerHTML = "<h3>Press the left and right arrow keys to avoid the Nyancats. Press the up arrow to shoot the Nyancats. Score one point for each Nyancat you hit!</h3>"
-    // theRoot.appendChild(tealDiv);
-
-    // const startButton = document.createElement("div");
-    // startButton.style.width = "150px";
-    // startButton.style.height = "50px";
-    // startButton.style.borderRadius = "5px";
-    // startButton.style.padding = "10px";
-    // startButton.style.marginBottom = "10px";
-    // startButton.style.display = "flex";
-    // startButton.style.justifyContent = "center";
-    // startButton.style.alignItems = "center";
-    // startButton.style.backgroundColor = "black";
-    // startButton.style.color = "white";
-    // startButton.style.fontSize = "18px";
-    // startButton.innerText = "CLICK TO PLAY";
-    // // startButton.addEventListener('click', gameLoop());
-    // // startButton.addEventListener('click', function(startGame))
-    // tealDiv.append(startButton);
-
-    let playAgain = document.createElement("button");
-    playAgain.style.backgroundColor = "aquamarine";
-    playAgain.style.display = "none";
-    playAgain.style.height = "150px";
-    playAgain.style.width = "300px";
-    playAgain.style.position = "absolute";
-    playAgain.style.fontSize = "24px";
-    playAgain.style.borderRadius = "5px";
-    playAgain.style.top = "300px";
-    playAgain.style.left = "120px";
-    playAgain.style.zIndex = "150";
-    playAgain.innerText = "The cats got you! Click to play again."
-    // playAgain.addEventListener(click, function(startGame));
-    theRoot.appendChild(playAgain);
-
+    let instructions = document.createElement("div");
+    instructions.style.backgroundColor = "black";
+    instructions.style.color = "white";
+    instructions.style.display = "flex";
+    instructions.style.alignItems = "center";
+    instructions.style.justifyContent = "center";
+    instructions.style.textAlign = "center";
+    instructions.style.height = "75px";
+    instructions.style.width = "525px";
+    instructions.style.top = "50px";
+    instructions.style.position = "absolute";
+    instructions.style.fontSize = "18px";
+    instructions.style.lineHeight = "25px";
+    instructions.style.zIndex = "150";
+    instructions.innerText = "Dodge the Nyancats by pressing the left and right arrow keys. Shoot by pressing the up arrow. Get one point for every Nyancat you hit!"
+    theRoot.appendChild(instructions);
   }
 
   
@@ -123,18 +90,13 @@ class Engine {
 
     let gameOverFX = document.getElementById("gameOver");
 
-    function gameOverSound() {
-      gameOverFX.loop = false;
-      gameOverFX.play();
-    }
 
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      gameOverSound();
+      gameOverFX.loop = false;
+      gameOverFX.play();
       window.alert('Game over');
-      // playAgain.style.display = "block";
-
       return;
     }
     
@@ -150,9 +112,7 @@ class Engine {
       explosionSoundEffect.play();
     }
 
-    let introText = document.querySelector("h3");
-
-    let scoreText = document.querySelector("h4");
+    let scoreText = document.querySelector("h2");
 
     if (this.isEnemyDead()) {
       explodeSound();
