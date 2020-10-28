@@ -1,14 +1,44 @@
 <html>
   <head>
     <title>Nyan Kat</title>
+    <!-- <style>
+      /* #start {
+        border: none;
+        background-color: aquamarine;
+        width: 150px;
+        height: 100px;
+        position: absolute;
+        font-size: 24px;
+        border-radius: 5px;
+        top: 300px;
+        left: 200px;
+        z-index: 150;
+      } */
+    </style> -->
   </head>
   <body>
-    <div id="app"></div>
-    <script src="js/data.js"></script>
-    <script src="js/Enemy.js"></script>
-    <script src="js/engine-utilities.js"></script>
-    <script src="js/Engine.js"></script>
-    <script src="js/Player.js"></script>
-    <script src="js/main.js"></script>
+  
+    <!-- <div class="container" id="container"> -->
+      <h4 id="score">Score:</h4>
+
+      <!-- <div id="startButton" class="startButton">Start the game!</div> -->
+
+      <div id="app"></div>
+
+      <script src="js/data.js"></script>
+      <script src="js/Enemy.js"></script>
+      <script src="js/engine-utilities.js"></script>
+      <script src="js/Engine.js"></script>
+      <script src="js/Player.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/shot.js"></script>
+
+      <audio id="shootSound" loop="false" volume="20" src="sounds/shoot.mp3" type="audio/mpeg" autoplay="false"></audio> 
+      <audio id="explosionSound" loop="false" volume="30" src="sounds/explosion.wav" type="audio/wav" autoplay="false"></audio> 
+      <audio id="gameOver" loop="false" volume="45" src="sounds/gameover.wav" type="audio/wav" autoplay="false"></audio> 
+
+      <button type="button" id="start">START</button>
+
+    <!-- </div> -->
   </body>
 </html>

@@ -18,6 +18,12 @@ const keydownHandler = (event) => {
   if (event.code === 'ArrowRight') {
     gameEngine.player.moveRight();
   }
+
+  // If `event.code` is the string that represents an up arrow keypress, 
+  // then our doge fires a cheezburger at nyancats
+  if (event.code === 'ArrowUp') {
+    gameEngine.shoot();
+  }
 };
 
 // We add an event listener to document. document the ancestor of all DOM nodes in the DOM.
