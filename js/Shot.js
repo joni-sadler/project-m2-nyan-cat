@@ -5,7 +5,7 @@ class Shot {
         // store the data in a property of the instance. It represents the distance from the left margin of the browsing area to
         // the leftmost x position of the image.
         
-        this.x = player.x + (PLAYER_WIDTH / 2);
+        this.x = player.x;
         this.y = player.y;
 
         this.player = player;
@@ -30,14 +30,14 @@ class Shot {
         burgerRoot.appendChild(this.domElement);
       }
 
-
+      // Reuse code that makes the nyancats fall down, but reverse it so the cheezburger moves up from
+      // bottom of the page
       update(timeDiff) {
-        // Reuse code that makes the nyancats fall down, but reverse it so the cheezburger moves up from
-        // bottom of the page
         this.y = this.y - timeDiff * this.speed;
         this.domElement.style.top = `${this.y}px`;    
       }
 
+      // If the shot hits an enemy, remove the shot from the playing field
       destroy() {
         this.destroyed = true;
         this.root.removeChild(this.domElement);

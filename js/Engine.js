@@ -18,12 +18,13 @@ class Engine {
     // Adding an empty array of shots, since none have been fired at the outset
     this.shots = [];
 
+    // Add empty array to keep track of score
     this.score = [];
 
    // We add the background image to the game
-
     addBackground(this.root);
 
+    // Add top bar with instructions
     let instructions = document.createElement("div");
     instructions.style.backgroundColor = "black";
     instructions.style.color = "white";
@@ -42,15 +43,11 @@ class Engine {
     theRoot.appendChild(instructions);
   }
 
-  
-
-
   // The gameLoop will run every few milliseconds. It does several things
   //  - Updates the enemy positions
   //  - Detects a collision between the player and any enemy
   //  - Removes enemies that are too low from the enemies array
  
-
   gameLoop = () => {
 
     // This code is to see how much time, in milliseconds, has elapsed since the last
@@ -69,6 +66,7 @@ class Engine {
       enemy.update(timeDiff);
     });
 
+    // Update shots each time enemy positions are updated.
     this.shots.forEach((shot) => {
       shot.update(timeDiff);
     });
@@ -88,8 +86,8 @@ class Engine {
       this.enemies.push(new Enemy(this.root, spot));
     }
 
+    // Add sound effect when game ends
     let gameOverFX = document.getElementById("gameOver");
-
 
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
@@ -99,21 +97,24 @@ class Engine {
       window.alert('Game over');
       return;
     }
-    
 
-    this.shots = this.shots.filter((shot) => {
-      return !shot.destroyed;
-    });
-
+    // Add sound effect for when you hit a nyancat
     let explosionSoundEffect = document.getElementById("explosionSound");
 
     function explodeSound() {
       explosionSoundEffect.loop = false;
       explosionSoundEffect.play();
     }
+    
+    // Remove any shots that have been destroyed
+    this.shots = this.shots.filter((shot) => {
+      return !shot.destroyed;
+    });
 
+    // Display the score at the top of the screen
     let scoreText = document.querySelector("h2");
 
+    // Increase the score by adding one to the score array each time an enemy is hit
     if (this.isEnemyDead()) {
       explodeSound();
       this.score.push(1);
@@ -136,6 +137,9 @@ class Engine {
     this.shots.push(new Shot(this.root, this.player));
   }
 
+  // Determine whether your shot has hit an enemy by measuring the distance between the two. 
+  // By looping through both arrays, you compare the distance between all instances of enemy and shot.
+  // If you hit a target, both the enemy and shot are destroyed so they disappear from the playing field.
   isEnemyDead = () => {
     let enemyDead = false;
     this.enemies.forEach((enemy) => {
@@ -152,6 +156,8 @@ class Engine {
     return enemyDead;
   }
 
+  // If the distance between player and an enemy is less than 75px (the width of the player), then you have been struck!
+  // If the player isDead then the game ends.
   isPlayerDead = () => {
     let isDead = false;
     this.enemies.forEach((enemy) => {
